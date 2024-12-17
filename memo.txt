@@ -1,0 +1,20 @@
+1. splash화면 적용
+    화면을 생성했다가 메인에서 그냥 바로 처리 하는 방식으로 변경함.
+2. 하단 메뉴바 적용 tabItem.dart
+3. home화면 만들기  HomeFragment
+   새로고침  RefreshIndicator
+   알림기능 - notification  // timeago() //현재시간 기준으로 ~~전....표시하는 라이브 러리// 다이얼로그(d_notification.dart)
+4. 혜택화면 만들기
+5. 주식 화면 만들기...Stock1  //tabController 탭 선택시 화면전환 관련 시점 확인....필수임..중요
+   테마가 dart와 light 2개 버전  //상속은 abs_theme_colors를 받아서 변경할 색만 구현해야한다.....
+6. get X 상태관리 라이브러리  obx()와 RXList 함수 사용
+   검색 및 검색어 자동완성 기능구현
+7. setting화면 구현
+   push, silder, dataTime형태의 버튼 값을 저장 하는 preferences 기본 형태 / 다이얼로그 값을 화면에 적용
+   change_app_package_name 패키지 이름을 변경하는 방법  #https://pub.dev/packages/change_app_package_name
+   앱스토어 올릴때 패키지이름을 중복되지 않게 잘 지어서 올려야 함.. (build.gradle의 applicationId명이 정상적이여야함. 이걸 수정함.
+   주소 들어가서 설명서 읽어보면 됨...
+   ios : xcode-> open a project or file 선택 -> 프로젝트 ios폴더의 Runner.xcworkspace파일선택 -> 좌측 Runner 탭의 Bundle identifier input칸의 패키지 명을 변경
+8. # https://pub.dev/packages/flutter_animate 애니메이션...... 가장 쉬운버전으로 home화면에 적용
+   #flutter pub add flutter_animate 터미널입력방식도 있으나. 개발상 버전이 안맞아서 그냥 yaml방식으로 함.
+   #flutter pub add live_background 바탕화면을 영상으로...
