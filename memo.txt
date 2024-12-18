@@ -15,6 +15,15 @@
    앱스토어 올릴때 패키지이름을 중복되지 않게 잘 지어서 올려야 함.. (build.gradle의 applicationId명이 정상적이여야함. 이걸 수정함.
    주소 들어가서 설명서 읽어보면 됨...
    ios : xcode-> open a project or file 선택 -> 프로젝트 ios폴더의 Runner.xcworkspace파일선택 -> 좌측 Runner 탭의 Bundle identifier input칸의 패키지 명을 변경
-8. # https://pub.dev/packages/flutter_animate 애니메이션...... 가장 쉬운버전으로 home화면에 적용
-   #flutter pub add flutter_animate 터미널입력방식도 있으나. 개발상 버전이 안맞아서 그냥 yaml방식으로 함.
-   #flutter pub add live_background 바탕화면을 영상으로...
+8. animation
+   1) # https://pub.dev/packages/flutter_animate 애니메이션...... 가장 쉬운버전으로 home화면에 적용
+      #flutter pub add flutter_animate 터미널입력방식도 있으나. 개발상 버전이 안맞아서 그냥 yaml방식으로 함.
+      #flutter pub add live_background 바탕화면을 영상으로...
+   2) 팝업 자연스럽게 transfrom 예제 주식 탭의 검색에서 구현
+      # https://pub.dev/packages/animations 2.0.7 학습시점의 버전.
+      리스트를 위젯으로 구현했던것을 그냥 애니매이션 안에서 구현했다......바뀌었다...
+   3) 플루터의 내장 animation......flutter inspector를 통해 해당 화면의 코도로 이동해준다.
+   4) 설정에서 스크롤에 따라 크기가 변하는 title구현
+   5) 설정에서 스크롤에 따라 이미지 색상 변경 구현
+   6) 설정에서 explicit animation 구현  --animation controller 스크롤 또는 슬라이더 값으로 이미지 위치를 움직이는 애니메이션
+9. 그리는 것을 바탕으로 하는 애니메이션 rive ... lottie 라이브러리 등등.....유투브 rive101

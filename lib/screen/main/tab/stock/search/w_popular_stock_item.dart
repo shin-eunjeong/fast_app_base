@@ -13,14 +13,12 @@ class PopularStockItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(
-            width: 30,
-            child: number.text.make()),
-        width30,
-        stock.stockName.text.make(),
+        number.text.bold.white.size(16).make(),
+        width20,
+        stock.stockName.text.bold.white.size(16).make(),
         emptyExpanded,
-        stock.todayPercentageString.text.color(stock.getPriceColor(context)).make(),
+        stock.todayPercentageString.text.color(stock.getPriceColor(context)).size(16).make(),
       ],
-    ).pSymmetric(v: 25);
+    ).pSymmetric(h:20,v: 20);
   }
 }
