@@ -79,6 +79,7 @@ dependencies:
   #animation
   flutter_animate: ^4.2.0   #배경 움직임 기능위한
   animations: ^2.0.7
+  rive: ^0.11.4         # 수업영상시점의 버전으로 변경.....sdk 안맞는다고 에러남.
 
 dev_dependencies:
   flutter_test:
@@ -112,7 +113,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    - assets/
     - assets/json/
+    - assets/rive/
     - assets/image/
     - assets/image/bank/
     - assets/image/benefit/
@@ -126,7 +129,7 @@ flutter:
     - assets/image/splash/
     - assets/image/notification/
     - assets/translations/
-    - assets/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

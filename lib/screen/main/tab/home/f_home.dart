@@ -5,6 +5,7 @@ import 'package:fast_app_base/screen/dialog/d_message.dart';
 import 'package:fast_app_base/screen/main/s_main.dart';
 import 'package:fast_app_base/screen/main/tab/home/vo/banks_accounts_dummy.dart';
 import 'package:fast_app_base/screen/main/tab/home/w_bank_account.dart';
+import 'package:fast_app_base/screen/main/tab/home/w_rive_like_button.dart';
 import 'package:fast_app_base/screen/main/tab/home/w_ttoss_app_var.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -15,10 +16,18 @@ import '../../../../common/widget/w_big_button.dart';
 import '../../../dialog/d_color_bottom.dart';
 import '../../../dialog/d_confirm.dart';
 
-class HomeFragment extends StatelessWidget {
+class HomeFragment extends StatefulWidget {
+  //원래는 StatelessWidget 는데 좋아요 기능 때문에 StatefulWidget 변경
   const HomeFragment({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<HomeFragment> createState() => _HomeFragmentState();
+}
+
+class _HomeFragmentState extends State<HomeFragment> {
+  bool isLike = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +39,9 @@ class HomeFragment extends StatelessWidget {
         children: [
           //백그라운드 움직이는 이미지 넣기...
           const LiveBackgroundWidget(
-            palette: Palette(colors: [Colors.red, Colors.green]),  //색깔변경
-            velocityX: 5,  //속도
-            particleMaxSize: 50,  //원의 크기
+            palette: Palette(colors: [Colors.red, Colors.green]), //색깔변경
+            velocityX: 5, //속도
+            particleMaxSize: 50, //원의 크기
           ),
           RefreshIndicator(
             //화면을 당겼다가 놓으면 새로고침 기능으로 비동기 async() 이용
@@ -47,6 +56,19 @@ class HomeFragment extends StatelessWidget {
               // 고정되어야할 top메뉴와 하단 높이값을 각각의 화면에서 상수값으로 설정하여 지정함.
               child: Column(
                 children: [
+                  //좋아요 버튼 구성 예제 ,,  꼭 사이즈를 지정해야 한다.
+                  SizedBox(
+                    height: 250,
+                    width: 250,
+                    child: RiveLikeButton(
+                      isLike,
+                      onTapLike: (isLike) {
+                        setState(() {
+                          this.isLike = isLike;
+                        });
+                      },
+                    ),
+                  ),
                   BigButton(
                     "토스뱅크",
                     onTap: () {

@@ -1,5 +1,6 @@
 import 'package:fast_app_base/app.dart';
 import 'package:fast_app_base/common/common.dart';
+import 'package:fast_app_base/screen/main/tab/home/s_rive_login.dart';
 import 'package:fast_app_base/screen/notification/s_notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -25,6 +26,7 @@ class _TtossAppBarState extends State<TtossAppBar> {
       height: TtossAppBar.appBarHeight,
       color: context.appColors.appBarBackGround, //테마에 맞는 색상으로 지정 및 생성함
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           width10,
           //Image.asset("$basePath/icon/toss.png", height: 30) 애니매이션 적용위해 변경 , 이미지속성은 컨테이너가 아니면 내부속성이 안됨...heigh 삭제
@@ -43,6 +45,12 @@ class _TtossAppBarState extends State<TtossAppBar> {
               crossFadeState: _tappingCount<4? CrossFadeState.showFirst: CrossFadeState.showSecond,       //1,2뭘보여줄것이가 설정..
               duration: 1500.ms),
           _tappingCount.text.make(),
+          SizedBox(width: 180,),
+          Tap( //로그인 페이지 한번 만들어 봄..
+              onTap: () {
+                Nav.push(const ScreenRiveLogin());
+              },
+              child: Icon(size: 30, Icons.person),),
           emptyExpanded,
           //애니매이션 적용을 위해 변경한다.
           //Image.asset("$basePath/icon/map_point.png", height: 30),
@@ -50,6 +58,11 @@ class _TtossAppBarState extends State<TtossAppBar> {
               onTap: () {
                 setState(() {
                   _tappingCount++;
+                });
+              },
+              onLongPress: (){
+                setState(() {
+                  _tappingCount--;
                 });
               },
               child: Image.asset("$basePath/icon/map_point.png", height: 30)),
