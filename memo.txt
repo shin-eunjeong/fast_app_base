@@ -36,3 +36,13 @@
    1) 좋아요...버튼  https://rive.app/community/files/375-1405-light-like/
    2) 로그인페이지 ..이미지 붙여서 로그인 페이지 생성
    3) 종료 버튼
+10. Advanced
+   1) list.set.map. generic
+   2) Future, Async, Await
+   3) Stream, Controller,,,,,,
+     카운트 진행 이후 좋아요 버튼구역 활성화 응용하였는데...좋아요의 버튼값이 외부값이다 보니 스트림이 적용되어
+     내부값으로 변경하였고
+     stream 계속 반복되는 문제가 발생하여 streamController 변경, 조정해야 했다.
+   4)Iterable, Sync, Async
+     리스트와 함께쓰는 iterable
+

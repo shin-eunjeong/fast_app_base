@@ -12,4 +12,8 @@ class BankAccount {
     this.balance,
     this.accountTypeName,
   );
+  @override
+  String toString() {
+    return 'BankAccount(bank : $bank, balance: $balance, accountTypeName: $accountTypeName)';
+  }
 }

@@ -27,7 +27,41 @@ class HomeFragment extends StatefulWidget {
 }
 
 class _HomeFragmentState extends State<HomeFragment> {
-  bool isLike = false;
+  bool isLike = false; //좋아요 변수
+  int count = 0;
+  bool isStreamCompleted = false; // 스트림이 완료되었는지 여부
+  final StreamController<int> _countController = StreamController<int>();
+  late Stream<int> _countStream;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // countStream을 초기화하여 스트림을 단일 생명주기로 보장
+    _countStream = countStream(5);
+  }
+  @override
+  void dispose() {
+    _countController.close();
+    super.dispose();
+  }
+
+  //스트림 때문에 만듬 함수
+  Stream<int> countStream(int max) async* {
+    await Future.delayed(Duration(seconds: 2)); // 2초 대기
+    for (int i = 1; i <= max; i++) {
+      yield i; // 값 발행
+      await Future.delayed(Duration(seconds: 2)); // 2초 간격으로 값 발행
+    }
+    isStreamCompleted = true; // 스트림 종료
+  }
+
+  void addDataTotheSink() async{
+    // StreamController<int> _countController = StreamController<int>();
+    await Future.delayed(2.seconds, () => {});
+    _countController.sink.add(count++);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,19 +90,48 @@ class _HomeFragmentState extends State<HomeFragment> {
               // 고정되어야할 top메뉴와 하단 높이값을 각각의 화면에서 상수값으로 설정하여 지정함.
               child: Column(
                 children: [
-                  //좋아요 버튼 구성 예제 ,,  꼭 사이즈를 지정해야 한다.
-                  SizedBox(
+                  StreamBuilder<int>(
+                    stream: _countStream,     //좋아요가 제대로 동작을 안해서 controller로 변경
+                    builder: (context,snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      } else if (snapshot.connectionState == ConnectionState.done) {
+                        return SizedBox(
+                          height: 250,
+                          width: 250,
+                          child: RiveLikeButton(
+                            isLike,
+                            onTapLike: (isLike) {
+                              setState(() {
+                                this.isLike = isLike;
+                              });
+                            },
+                          ),
+                        );
+                      } else if (snapshot.hasData) {
+                        return Text(
+                          'Count: ${snapshot.data}',
+                          style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        );
+                      } else {
+                        return const Text("No Data");
+                      }
+
+                    },
+                  ),
+                 /* SizedBox(
+                    //좋아요 버튼 구성 예제 ,,  꼭 사이즈를 지정해야 한다.
                     height: 250,
                     width: 250,
                     child: RiveLikeButton(
                       isLike,
                       onTapLike: (isLike) {
                         setState(() {
-                          this.isLike = isLike;
+                          this.isLike = !isLike;
                         });
                       },
                     ),
-                  ),
+                  ),*/
                   BigButton(
                     "토스뱅크",
                     onTap: () {
@@ -153,3 +216,5 @@ class _HomeFragmentState extends State<HomeFragment> {
     Scaffold.of(context).openDrawer();
   }
 }
+
+
