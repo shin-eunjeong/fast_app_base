@@ -46,3 +46,8 @@
    4)Iterable, Sync, Async
      리스트와 함께쓰는 iterable
 
+11. 서버 연결하는 package:http/http.dart as http;  http.post(Uri.parse("서버주소"), body:{"message": message});
+12. state managementsms => 빠른 개발과 앱 스펙 수정시 빠르게 찾고 수정하기 위해서임.
+    scoped model -> 1. 해당화면이 사라지면 자동으로 메모리 해제, 2. Id(구별자) 없이도 상위 데이터참조 가능
+    static model -> 1. 메모리 관리는 개발자가 직접, 2. 데이터 참조시 ID(구별자) 항상 필요, 3. Scope보다 구현이 쉽고 모든 코드에 State에 접근 수정가능
+    일정관리 화면인데 날짜를 기본 언어에 따른 내용을 적용함

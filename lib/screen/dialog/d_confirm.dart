@@ -22,7 +22,7 @@ class ConfirmDialog extends DialogWidget<SimpleResult> {
     this.fontSize = 14,
     this.cancelable = true,
     this.textAlign = TextAlign.start,
-  })  : buttonText = buttonText ?? 'close'.tr(),
+  })  : buttonText = buttonText ?? 'confirm'.tr(),
         cancelButtonText = cancelButtonText ?? 'cancel'.tr();
 
   @override
@@ -55,7 +55,7 @@ class _MessageDialogState extends DialogState<ConfirmDialog> {
                           style: TextStyle(
                               fontSize: widget.fontSize,
                               height: 1.8,
-                              color: context.appColors.text),
+                              color: context.appColors.diaText),
                           textAlign: widget.textAlign,
                         ),
                       ),

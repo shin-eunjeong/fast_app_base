@@ -1,4 +1,6 @@
 import 'package:fast_app_base/common/common.dart';
+import 'package:fast_app_base/screen/main/tab/search/s_search.dart';
+import 'package:fast_app_base/screen/main/tab/todo/s_todo.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widget/round_button_theme.dart';
@@ -30,13 +32,29 @@ class MenuFragment extends StatelessWidget {
                     children: [
                       const Row(),
                       RoundButton(
+                        text: 'Todo 확인',
+                        onTap: () => Nav.push(const TodoScreen(),
+                            context: context),
+                        theme: RoundButtonTheme.blue,
+                      ),
+                      height20,
+                      RoundButton(
+                        text: '검색 보기',
+                        onTap: () => Nav.push(const SearchScreen(),
+                            context: context),
+                        theme: RoundButtonTheme.blue,
+                      ),
+                      height20,
+                      RoundButton(
                         text: '즐겨찾기 화면 띄우기',
                         onTap: () => Nav.push(const MenuFragment(isShowBackButton: true),
                             context: context),
                         theme: RoundButtonTheme.blue,
                       ),
                     ]),
+
               ),
+
             )
           ],
         ),

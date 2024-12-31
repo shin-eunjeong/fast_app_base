@@ -23,14 +23,17 @@ enum TabItem {
       : inActiveIcon = inActiveIcon ?? activeIcon;
 
   BottomNavigationBarItem toNavigationBarItem(BuildContext context, {required bool isActivated}) {
+
     return BottomNavigationBarItem(
-        icon: Icon(
-          key: ValueKey(tabName),
-          isActivated ? activeIcon : inActiveIcon,
-          color:
-              isActivated ? context.appColors.iconButton : context.appColors.iconButtonInactivate,
-        ),
-        label: tabName);
+      icon: Icon(
+        key: ValueKey(tabName),
+        isActivated ? activeIcon : inActiveIcon,
+        color: isActivated
+            ? context.appColors.iconButton
+            : context.appColors.iconButtonInactivate // 아이콘 색상
+      ),
+      label: tabName, // 레이블 텍스트  색상의 상단에서 변경한다.
+    );
   }
 }
 

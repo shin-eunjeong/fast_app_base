@@ -18,6 +18,6 @@ void main() async {
       supportedLocales: const [Locale('en'), Locale('ko')],
       fallbackLocale: const Locale('en'),
       path: 'assets/translations',
-      useOnlyLangCode: true,
+      useOnlyLangCode: false,
       child: const App()));
 }

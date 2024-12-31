@@ -2,7 +2,12 @@
   "opensource": "Open Source",
   "clear_cache": "Clear Cache",
   "clear_cache_done": "Cache has been cleared.",
+  "confirm": "Confirm",
   "close": "Close",
   "done": "Done",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "tillToday" : "till Today",
+  "tillTomorrow" : "till Tomorrow",
+  "daysLeft" : "{daysCount} days Left",
+  "daysPassed" : "{daysCount} days Passed"
 }

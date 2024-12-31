@@ -1,10 +1,12 @@
 import 'package:fast_app_base/common/common.dart';
+import 'package:fast_app_base/common/data/memory/todo_data_notifier.dart';
 import 'package:fast_app_base/common/theme/custom_theme_app.dart';
 import 'package:fast_app_base/screen/main/s_main.dart';
 import 'package:fast_app_base/screen/splash/s_splash.dart';
 
 import 'package:flutter/material.dart';
 
+import 'common/data/memory/todo_data_holder.dart';
 import 'common/theme/custom_theme.dart';
 
 class App extends StatefulWidget {
@@ -24,6 +26,8 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
   @override
   GlobalKey<NavigatorState> get navigatorKey => App.navigatorKey;
 
+  final notifier = TodoDataNotifier(); //앱 실행시 생성되었다가 닫히면 같이 닫히게 만든다.
+
   @override
   void initState() {
     super.initState();
@@ -33,6 +37,7 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    notifier.dispose();
     super.dispose();
   }
 
@@ -40,14 +45,17 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return CustomThemeApp(
       child: Builder(builder: (context) {
-        return MaterialApp(
-          navigatorKey: App.navigatorKey,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          title: 'Image Finder',
-          theme: context.themeType.themeData,
-          home: const MainScreen(),
+        return TodoDataHolder(        //todo 데이터를 불러오기위해 materialApp을 todo dataHolder로 감쌌다.
+          notifier:notifier,
+          child: MaterialApp(
+            navigatorKey: App.navigatorKey,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            title: 'Image Finder',
+            theme: context.themeType.themeData,
+            home: const MainScreen(),
+          ),
         );
       }),
     );

@@ -33,7 +33,7 @@ class MainScreenState extends State<MainScreen>
   GlobalKey<NavigatorState> get _currentTabNavigationKey =>
       navigatorKeys[_currentIndex];
 
-  bool get extendBody => true;
+  static bool get extendBody => true;
 
   static double get bottomNavigationBarBorderRadius => 30.0;
   //하단 메뉴탭의 높이값을 상수로 주는 변수
@@ -121,7 +121,7 @@ class MainScreenState extends State<MainScreen>
         child: BottomNavigationBar(
           items: navigationBarItems(context),
           currentIndex: _currentIndex,
-          selectedItemColor: context.appColors.text,
+          selectedItemColor: context.appColors.iconButton,   //아이콘과 라벨색을 여기서 맞춘다.
           unselectedItemColor: context.appColors.iconButtonInactivate,
           onTap: _handleOnTapNavigationBarItem,
           showSelectedLabels: true,
