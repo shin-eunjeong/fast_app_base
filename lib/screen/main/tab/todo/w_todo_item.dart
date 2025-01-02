@@ -6,10 +6,11 @@ import 'package:fast_app_base/common/widget/w_rounded_container.dart';
 import 'package:fast_app_base/screen/main/tab/todo/w_todo_status.dart';
 import 'package:flutter/material.dart';
 
-class TodoItem extends StatelessWidget {
+class TodoItem extends StatelessWidget with TodoDataProvider{
+  //getx의 TodoDataProvider 변경하후 context로 받던 값을 TodoDataProvider.todoData로 변경
   final Todo todo;
 
-  const TodoItem(this.todo, {super.key});
+  TodoItem(this.todo, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,8 @@ class TodoItem extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 6),// 일정 사이의 간격을 위해. padding으로 감쌈.
       child: Dismissible(
         onDismissed: (direction){
-          context.todoHolder.removeTodo(todo);
+          todoData.removeTodo(todo);
+          //context.todoHolder.removeTodo(todo);
         },
         background: RoundedContainer(
           backgroundColor: context.appColors.removeTodoBg,
@@ -56,7 +58,8 @@ class TodoItem extends StatelessWidget {
                     Expanded(child: todo.title.text.size(20).color(Colors.black54).medium.make()),
                     IconButton(onPressed: () async{
                       //수정기능
-                      context.todoHolder.editTodo(todo);
+                      //context.todoHolder.editTodo(todo);
+                      todoData.editTodo(todo);
         
                     }, icon: Icon(EvaIcons.editOutline,color: Colors.black54,))
                   ],

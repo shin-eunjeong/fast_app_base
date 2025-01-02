@@ -19,7 +19,7 @@ class TodoScreen extends StatefulWidget {
   State<TodoScreen> createState() => _TodoScreenState();
 }
 
-class _TodoScreenState extends State<TodoScreen> {
+class _TodoScreenState extends State<TodoScreen> with SingleTickerProviderStateMixin, TodoDataProvider{
 
   @override
   void initState() {
@@ -53,7 +53,7 @@ class _TodoScreenState extends State<TodoScreen> {
                                 icon: const Icon(Icons.menu),)
                           ],
                         ),
-                        Expanded(child: const TodoList().pSymmetric(h:15)),
+                        Expanded(child: TodoList().pSymmetric(h:15)),
                       ],
                     ),
 
@@ -66,7 +66,8 @@ class _TodoScreenState extends State<TodoScreen> {
                 //right: MediaQuery.of(context).size.width /2 -28, // FAB 중앙 정렬
                 child: FloatingActionButton(
                   onPressed: () async{
-                    context.todoHolder.addTodo();
+                    todoData.addTodo(); // getx일때
+                    //context.todoHolder.addTodo(); // 일반상태관리일때
                     //다이얼로그 값을 반환받아서. 구문이였으나 todoHolder에서 모두 처리하도록 변경
                     // final result =await WriteTodoDialog().show();
                     // if(result != null && mounted){

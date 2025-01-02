@@ -5,6 +5,7 @@ import 'package:fast_app_base/screen/main/s_main.dart';
 import 'package:fast_app_base/screen/splash/s_splash.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 
 import 'common/data/memory/todo_data_holder.dart';
 import 'common/theme/custom_theme.dart';
@@ -26,23 +27,39 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
   @override
   GlobalKey<NavigatorState> get navigatorKey => App.navigatorKey;
 
-  final notifier = TodoDataNotifier(); //앱 실행시 생성되었다가 닫히면 같이 닫히게 만든다.
+  //final notifier = TodoDataNotifier(); //앱 실행시 생성되었다가 닫히면 같이 닫히게 만든다. //getx로 상태관리하면서 삭제
 
   @override
   void initState() {
     super.initState();
+    Get.put(TodoDataHolderGetx());  //instance_manager import했음 getx로 관리하는 일정
     WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    notifier.dispose();
+    //notifier.dispose(); getx일 때는 불필요
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    return CustomThemeApp(
+      child: Builder(builder: (context) {
+        return MaterialApp(
+          navigatorKey: App.navigatorKey,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          title: 'Image Finder',
+          theme: context.themeType.themeData,
+          home: const MainScreen(),
+        );
+      }),
+    );
+  }
+/*  Widget build(BuildContext context) {  // 일반 상태관리를 할때는 이렇게 했으나...getx로 변경해서 주석처리
     return CustomThemeApp(
       child: Builder(builder: (context) {
         return TodoDataHolder(        //todo 데이터를 불러오기위해 materialApp을 todo dataHolder로 감쌌다.
@@ -59,8 +76,7 @@ class AppState extends State<App> with Nav, WidgetsBindingObserver {
         );
       }),
     );
-  }
-
+  }*/
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     switch (state) {
